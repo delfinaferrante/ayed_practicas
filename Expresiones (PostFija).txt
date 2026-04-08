@@ -1,0 +1,51 @@
+////EXPRESIÓN POSTFIJA
+	¿Qué es? Normalmente nosotros escribimos las operaciones en NOTACIÓN INFIJA, es decir, con
+	el operador en el medio de los números (por ejemplo 3 + 4).
+	En una expresión POSTFIJA, el operador va después de los números. En lugar de decir 3 + 4,
+	se dice "3, 4 y sumalos".
+
+	Condiciones: 	La expresión recibida es válida. 
+			Solo contiene números del 0 al 9 y los operadores +, -, *, /
+			La evaluación debe realiazrse utilizando una pila.
+
+	Lógica de apilamiento:	voy guardando los números que aparecen, uno encima de otro.
+				Si veo un número, lo apilo. Si veo un operador, tengo que desapilar
+				los últimos dos números que guardé, hacer la cuenta y apilo solo
+				el resultado. 
+
+				En orden:
+					1) viene el 3: lo apilo.
+					2) viene el 4: lo apilo arriba del 3.
+					3) viene el operador +: desapilo el 3 y el 4. Hago la cuenta,
+					guardo el resultado 7 en la pila.
+					4) viene el 2: lo apilo arriba del 7.
+					5) viene el operador *: saco el 2 y el 7. Hago la cuenta,
+					guardo el 14 en la pila.
+					6) El resultado final es el único valor que quedó en la pila.
+
+	Código:
+		public static int evaluarPostfija(String expresion){
+			Stack<Integer> stack= new Stack<>();
+
+			for (int i= 0; i< expresion.lenght(); i++){
+				char valor = expresion.charAt(i);
+
+				if (esNumero(valor)){
+					stack.push(Character.getNumericValue(valor));
+				} else {
+					int b= stack.pop();
+					int a= stack.pop();
+					switch(valor) {
+						case '+': stack.push(a + b); break;
+						case '-': stack.push(a - b); break;
+						case '*': stack.push(a * b); break;
+						case '/': stack.push(a / b); break;
+					}
+				}
+			}
+			return stack.pop();
+		}
+
+		private static boolean esNumero(Character car){
+			return car >= '0' && car <= '9';
+		}

@@ -1,0 +1,35 @@
+PILAS (LIFO - último en entrar es el primero en salir)
+-- Declaración:
+		Stack<Libro> pila = new Stack<>();
+
+-- Agregar elementos:
+ 		pila.push(new Libro("Rayuela", "Julio Cortazar", 1999);
+
+-- Imprimir:
+		System.out.printLn(pila);  //muestra todos los elementos
+		System.out.printLn(pila.top()); //muestra el tope de la pila (el ultimo)
+
+-- Desapilar/Borrar:
+		Siempre hay que preguntar antes si la pila no está vacía.
+		Libro unLibro = null;
+		if (!pila.isEmpty()){
+			unLibro= pila.pop();
+		}
+
+-- Tamaño de la pila:
+		pila.size();
+
+
+
+COLAS (FIFO - primero en entrar es el primero en salir)
+-- Declaración:
+		Queue<Cliente> clientes = new Queue<>();
+
+-- Agregar elementos:
+		clientes.enqueue(new Cliente("Maria", 5));
+
+-- Desencolar:
+		Cliente atendido= clientes.dequeue();
+
+-- Tamaño:
+		clientes.size();

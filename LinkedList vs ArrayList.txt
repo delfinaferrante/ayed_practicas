@@ -1,0 +1,4 @@
+¿Cuando conviene usar cada una?
+- LinkedList conviene usarla cuando se requieren hacer muchas eliminaciones/inserciones en cualquier
+posición.
+-ArrayList conviene cuando se requiere acceso rápido por índice y se tienen menos inserciones.
