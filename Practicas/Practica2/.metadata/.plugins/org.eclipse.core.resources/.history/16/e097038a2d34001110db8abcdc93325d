@@ -1,0 +1,37 @@
+package ej1;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ContadorArbolEj3 {
+	private BinaryTree<Integer> arbol;
+	
+	public ContadorArbolEj3(BinaryTree<Integer> arbol) {
+		this.arbol = arbol;
+	}
+	
+	public List<Integer> numerosPares() {
+		List<Integer> listaPares = new ArrayList<>();
+		this.InOrden(this.arbol, listaPares);
+		return listaPares;
+	}
+	
+	
+	// hijo izquierdo, raiz, hijo derecho
+	public void InOrden(BinaryTree<Integer> arbol, List<Integer> listaPares) {
+		if (arbol.isEmpty() || arbol == null) {
+			return;
+		}
+		
+		if (arbol.hasLeftChild()) {
+			this.InOrden(arbol.getLeftChild(), listaPares);
+		}
+	}
+	
+	// hijo izquierdo, hijo derecho, raiz
+
+	
+	public static void main(String[]args) {
+		
+	}
+}
