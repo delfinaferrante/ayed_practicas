@@ -1,0 +1,48 @@
+--Árbol de expresión a partir de una EXPRESIÓN POSTFIJA
+
+	Algoritmo
+			tomo un caracter de la expresión
+			mientras (exista caracter) hacer
+				si es un operando --> creo un nodo y lo apilo
+				si es un operador (lo tomo como la raiz de los dos ult nodos creados)
+					creo un nodo R
+					desapilo y lo agg como hijo derecho de R
+					desapilo y lo agg como hijo izquierdo de R
+					apilo R
+				tomo otro caracter
+
+
+--Árbol de expresión a partir de una EXPRESIÓN PREFIJA
+
+	Algoritmo
+			public void arbolExpresion(arbolBin A, string exp){
+				si exp es nulo --> nada
+				si exp es un operador --> creo un nodo raiz R
+						      --> arbolExpresion(subArbIzq de R, exp (sin el primer caracter)
+						      --> arbolExpresion(subArbDer de R, exp (sin primer caracter)
+
+				si exp es un operando --> creo un nodo hoja
+
+
+--Árbol de expresión a partir de una EXPRESIÓN INFIJA
+(se debe convertir la expresion infija en postfija y a partir de esta construir el arbol)
+
+	Algoritmo para convertir infija en postfija:
+			*si es un operando --> se coloca en la salida
+			*si es un operador --> se maneja una pila segun la prioridad del operador en relacion al tope de la pila
+			
+				operador con > prioridad que el tope: se apila
+				operador con <= prioridad que el tope: se desapila colocandolo en la salida.
+				se vuelve a comparar el operador con el tope de la pila.
+
+			*si es un ( se apila
+			*si es un ) se desapila todo hasta el de inicio ( incluido este
+			*cuando se llega al final de la expresión, se desapilan todos los elementos llevándolos 
+			a la salida, hasta que la pila quede vacía. 
+
+OPERADORES ORDENADOS DE MAYOR PRIORIDAD A MENOR
+		^ potencia 
+		* / multiplicación y división
+		+ - suma y resta
+		Los '(' siempre se apilan y se desapilan solo cuando aparece el ')'.
+

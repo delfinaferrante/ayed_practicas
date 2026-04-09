@@ -1,0 +1,86 @@
+--Preorden
+Se procesa primero la raíz y luego sus hijos, izquierdo y derecho.
+
+		public void preOrden(){
+			imprimir(dato);
+			si (tiene hijo_izq)
+				hijo_izq.preOrden();
+			si (tine hijo_der)
+				hijo_der.preOrden();
+		}
+		
+		Implementado en java:
+		public void printPreOrden(){
+			System.out.println(this.getData());
+			if (this.hasLeftChild()){
+				this.getLeftChild().printPreOrden();
+			}
+			if (this.hasRightChild()){
+				this.getRightChild().printPreOrden();
+			}
+		}
+
+
+--Inorden
+Se procesa el hijo izquierdo, luego la raíz y último el hijo derecho.
+
+		public void inOrden(){
+			si (tiene hijo_izq)
+				hijo_izq.inOrden();
+			imprimir(dato);
+			si (tiene hijo_der)
+				hijo_der.inOrden();
+		}
+
+--Postorden
+Se procesan primero los hijos, izquierdo y derecho, y luego la raíz.
+
+		public void postOrden(){
+			si (tiene hijo_izq)
+				hijo_izq.postOrden();
+			si (tiene hijo_der)
+				hijo_der.postOrden();
+			imprimir(dato);
+		}
+
+--Por niveles
+Se procesan los nodos teniendo en cuenta sus niveles, primero
+la raíz, luego los hijos, los hijos de éstos, etc.
+
+		public void porNiveles(){
+			encolar(raiz);
+			mientras (cola no se vacíe){
+				desencolar(v);
+				imprimir(dato de v);
+				si (tiene hijo_izq)
+					encolar(hijo_izq);
+				si (tiene hijo_der)
+					encolar(hijo_der);
+			}
+		}
+
+		Implementación en java
+
+		public void printPorNiveles(){
+			BinaryTree<T> ab = null;
+			Queue<BinaryTree<T>> cola = new Queue<BinaryTree<T>>();
+			cola.enqueue(this);
+			cola.enqueue(null);
+			
+			while(!cola.isEmpty()){
+				ab = cola.dequeue();
+				if (ab != null) {
+					System.out.print(ab.getData());
+					if (ab.hasLeftChild()) {
+						cola.enqueue(ab.getLeftChild());
+					}
+					if (ab.hasRightChild()){
+						cola.enqueue(ab.getRightChild());
+					}
+
+				} else if (!cola.isEmpty()) {
+					System.out.println();
+					cola.enqueue(null);
+				}
+			}
+		}
