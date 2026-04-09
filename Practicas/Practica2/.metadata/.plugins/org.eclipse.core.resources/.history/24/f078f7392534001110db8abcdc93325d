@@ -1,0 +1,20 @@
+package ej1;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Queue<T> extends Sequence {
+    protected List<T> data;
+
+    // Constructor
+    public Queue() {
+        this.data = new ArrayList<T>();
+    }
+
+    // Inserta el elemento al final de la cola
+    public void enqueue(T dato) {
+        this.data.add(dato);
+    }
+    
+    
+}
