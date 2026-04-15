@@ -1,0 +1,64 @@
+//// 1. Recorrido por Niveles (BFS)
+	
+	Estrategia: Se procesa el árbol de forma horizontal (capa por capa)
+	usando una cola.
+	Cuándo elegirlo: Si necesitás procesar los nodos según su distancia
+			a la raíz.
+
+			Para encontrar el camino más corto en estructuras no
+			pesadas.
+
+			Para imprimir el árbol con una estructura visual
+			jerárquica.
+
+			Cuando el problema menciona explícitamente la palabra
+			"niveles" (ej. "promedio por nivel").
+
+
+//// 2. Recorrido en Profundidad (DFS)
+
+	Estrategia: Se explora cada rama hasta el fondo antes de retroceder.
+	Usa Recursión (o una Pila). Se divide en tres tipos según cuándo
+	procesás la raíz:
+	
+	*Pre-Orden (Raíz -> Izquierda -> Derecha)
+		Cuándo elegirlo: Para copiar un árbol (necesitás crear la
+				raíz antes que los hijos).
+
+				Para obtener una expresión polaca prefija de
+				un árbol de expresión.
+
+				Si necesitás procesar los nodos "de arriba
+				hacia abajo".
+
+	* In-Orden (Izquierda -> Raíz -> Derecha)
+		Cuándo elegirlo:
+			En Árboles Binarios de Búsqueda (BST): es fundamental
+			porque devuelve los elementos ordenados de menor a
+			mayor.
+
+			Para obtener la forma "humana" de una operación
+			matemática (ej. 2 + 3).
+
+	* Post-Orden (Izquierda -> Derecha -> Raíz)
+		Cuándo elegirlo: Para eliminar/borrar un árbol.
+
+				Para cálculos que dependen de los hijos
+				(como el Ejercicio 4 del Retardo, el tamaño
+				de un directorio o la altura del árbol).
+
+				Para evaluar expresiones matemáticas en
+				calculadoras (notación postfija).
+
+
+/////////////////////////////////////////////////////
+Si se pide: 
+ 1) Sumas de caminos raíz-hoja ----> Profundidad (post-orden/pre-orden)
+ 2) Cosas por "pisos" o niveles ----> Por niveles con cola
+ 3) Orden de menor a mayor ---------> Profundidad (in-orden)
+ 4) Operaciones que requieren hijos primero ----> Profundidad (post-orden)
+ 5) Clonar o serializar la estructura ---> Por niveles 
+
+Cuando tenés que elegir el "máximo entre el camino izquierdo y el derecho",
+estás obligada a esperar a que los hijos te den su respuesta antes de decidir.
+Eso lo convierte automáticamente en un Post-Orden.
