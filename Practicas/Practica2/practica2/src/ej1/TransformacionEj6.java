@@ -1,0 +1,40 @@
+package ej1;
+
+public class TransformacionEj6 {
+	BinaryTree<Integer> arbol;
+	
+	public TransformacionEj6(BinaryTree<Integer> arbol) {
+		this.arbol = arbol;
+	}
+	
+	// Recorrido en profundidad post-orden, porque necesito primero la suma de los subarboles.
+	public BinaryTree<Integer> suma(){
+		if (this.arbol != null && !this.arbol.isEmpty()) {
+	        sumarSubArboles(this.arbol);
+	    }
+	    
+	    return this.arbol;
+	}
+	
+	private int sumarSubArboles(BinaryTree<Integer> arbol) {
+		if (arbol == null) {
+			return 0;
+		}
+		
+		int valorOriginal = arbol.getData();
+		int sumaIzq = 0;
+		int sumaDer = 0;
+		
+		if(arbol.hasLeftChild()) {
+			sumaIzq += sumarSubArboles(arbol.getLeftChild());
+		}
+		
+		if(arbol.hasRightChild()){
+			sumaDer += sumarSubArboles(arbol.getRightChild());
+		}
+		
+		arbol.setData(sumaIzq + sumaDer);
+		return sumaIzq + sumaDer + valorOriginal;
+	}
+
+}
