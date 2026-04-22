@@ -1,0 +1,25 @@
+package ej1;
+
+public class ParcialArbolesEj7 {
+	private BinaryTree<Integer> arbol;
+	
+	
+	public boolean isLeftTree (int num) {
+		if (arbol.isEmpty()) {
+			return false;
+		}
+		
+		// busco el nodo con la raiz 'num'
+		if(arbol.getData() == num) {
+			contarNodos(arbol);
+		}
+		
+		if (arbol.hasLeftChild()) {
+			boolean esta = arbol.getLeftChild().isLeftTree(num);
+		}
+	}
+	
+	private int contarNodos(BinaryTree<Integer>arbol) {
+		
+	}
+}

@@ -1,0 +1,58 @@
+package ej1;
+
+public class ParcialArbolesEj8 {
+
+	
+	/* devuelve true si arbol1 es prefijo de arbol2, false en caso contrario.
+	 *  Se dice que un árbol binario arbol1 es prefijo de otro árbol binario arbol2, cuando arbol1 coincide
+		con la parte inicial del árbol arbol2 tanto en el contenido de los elementos como en su
+		estructura. 
+	 */
+	public boolean esPrefijo(BinaryTree<Integer> arbol1, BinaryTree<Integer> arbol2) {
+		// Es verdadero porque ya compare todo
+		if (arbol1 == null) {
+			return true;
+		}
+		
+		// Es falso porque termino arbol2 pero no arbol1
+		if (arbol2 == null) {
+			return false;
+		}
+		
+		if (arbol1.getData() != arbol2.getData()) {
+			return false;
+		}
+		
+		return recorrerYComparar(arbol1.getLeftChild(), arbol2.getLeftChild()) &&
+			   recorrerYComparar(arbol1.getRightChild(), arbol2.getRightChild());
+	}
+	
+	// Recorrido en pre-orden, porque necesito comparar raiz y luego sus hijos.
+	private boolean recorrerYComparar(BinaryTree<Integer> a1, BinaryTree<Integer> a2) {	
+		// Si los datos son distintos
+		if (a1.getData() != a2.getData()) {
+			return false;
+		}
+		
+		boolean resultadoIzq = true;
+		boolean resultadoDer = true;
+		
+		// Comparo subarboles izquierdos
+		if (a1.hasLeftChild()) {
+			if (a2.hasLeftChild()) {
+				resultadoIzq = recorrerYComparar(a1.getLeftChild(), a2.getLeftChild());
+			} else
+				return false;
+		}
+		
+		// Comparo subarboles derechos
+		if (a1.hasRightChild()) {
+			if (a2.hasRightChild()) {
+				resultadoDer = recorrerYComparar(a1.getRightChild(), a2.getRightChild());
+			} else
+				return false;
+		}
+		
+		return resultadoIzq && resultadoDer;
+	}
+}

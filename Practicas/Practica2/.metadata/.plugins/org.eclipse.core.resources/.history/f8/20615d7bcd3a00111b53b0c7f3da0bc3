@@ -1,0 +1,19 @@
+package ej1;
+
+public class TransformacionEj6 {
+	BinaryTree<Integer> arbol;
+	
+	public TransformacionEj6(BinaryTree<Integer> arbol) {
+		this.arbol = arbol;
+	}
+	
+	// Recorrido en profundidad post-orden, porque necesito primero la suma de los subarboles.
+	public BinaryTree<Integer> suma(){
+		
+		if(this.arbol.hasRightChild()) {
+			int sumaDerecha = this.arbol.getRightChild().suma();
+		}
+		int sumaIzquierda = 
+		
+	}
+}

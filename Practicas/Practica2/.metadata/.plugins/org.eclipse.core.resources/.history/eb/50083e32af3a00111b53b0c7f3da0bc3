@@ -1,0 +1,34 @@
+package ej1;
+
+public class RedBinariaLlenaEj4 {
+
+	/* a) Indique qué estrategia (recorrido en profundidad o por niveles) utilizará para resolver el
+	problema
+		Voy a usar recorrido en profundidad, en especifico con post-orden, ya que necesito las respuestas
+		(los calculos de retardo) de los hijos para poder decidir cual es el maximo entre ellos.
+	*/
+	
+	public int retardoReenvio(BinaryTree<Integer> arbol) {
+		int max = 0;
+
+		//caso base, llegué a una hoja
+		if (arbol.isLeaf()) {
+			return arbol.getData();
+		}
+		
+		// Obtengo el máximo acumulado de cada rama (como es arbol binario lleno, sé que si no es hoja tiene ambos hijos)
+	    int valorDerecho = retardoReenvio(arbol.getRightChild());
+	    int valorIzquierdo = retardoReenvio(arbol.getLeftChild());
+		
+		if (valorDerecho > valorIzquierdo) {
+			max = valorDerecho + arbol.getData();
+		} else
+			max = valorIzquierdo + arbol.getData();
+	
+		return max;
+	}
+	
+	public static void main(String[]args) {
+		BinaryTree<Integer> ab = new BinaryTree<>(10);
+	}
+}

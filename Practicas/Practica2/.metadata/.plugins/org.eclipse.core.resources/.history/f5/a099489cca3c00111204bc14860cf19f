@@ -1,0 +1,48 @@
+package ej1;
+
+public class ParcialArbolesEj7 {
+	private BinaryTree<Integer> arbol;
+	
+	
+	public boolean isLeftTree (int num) {
+		if (this.arbol.isEmpty()) {
+			return false;
+		}
+		return buscarYComparar(this.arbol, num);
+	}
+	
+	private boolean buscarYComparar(BinaryTree<Integer> arbol, int num) {
+		if (this.arbol == null) {
+			return false;
+		}
+		
+		// pregunto si encontre el arbol con dato 'num'
+		if (this.arbol.getData() == num) {
+			int cantIzq = contarNodos(this.arbol.getLeftChild());
+			int cantDer = contarNodos(this.arbol.getRightChild());
+			return cantIzq > cantDer;
+		}
+		
+		// si no lo encontré, sigo buscando
+		boolean encontreEnIzquierda = false;
+		if (this.arbol.hasLeftChild()) {
+			encontreEnIzquierda = buscarYComparar(this.arbol.getLeftChild(), num);
+		}
+		
+		if (encontreEnIzquierda) {
+			return true;
+		}
+		
+		// si no esta en la izquierda, busco a la derecha
+		if (this.arbol.hasRightChild()) {
+			return buscarYComparar(this.arbol.getRightChild(), num);
+		}
+		
+		// si no lo encontre en ningun lado, no existe
+		return false;
+	}
+	
+	private int contarNodos(BinaryTree<Integer>arbol) {
+		
+	}
+}

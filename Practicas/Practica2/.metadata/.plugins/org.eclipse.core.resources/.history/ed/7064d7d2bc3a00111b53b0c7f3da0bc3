@@ -1,0 +1,34 @@
+package ej1;
+
+public class ProfundidadDeArbolBinarioEj5 {
+	private BinaryTree<Integer> arbol;
+	
+	// devuelve la suma de todos los nodos del árbol que se encuentren a la profundidad pasada como argumento.
+	public int sumaElementosProfundidad(int p) {
+		BinaryTree<Integer> ab = null;
+		Queue<BinaryTree<Integer>> cola = new Queue<BinaryTree<Integer>>();
+		cola.enqueue(this.arbol);
+		cola.enqueue(null);
+		int nivelActual = 0;
+		
+		while (!cola.isEmpty() && nivelActual != p){	
+			ab = cola.dequeue();
+
+			if (ab != null) {
+				nivelActual ++;
+				if (ab.hasLeftChild()) {
+					cola.enqueue(ab.getLeftChild());
+				}
+				
+				if (ab.hasRightChild()) {
+					cola.enqueue(ab.getRightChild());
+				}
+				
+			} else if (!cola.isEmpty()) {
+				System.out.println(ab.getData());
+				cola.enqueue(null);
+			}
+		
+		}
+		}
+}

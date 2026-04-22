@@ -1,0 +1,10 @@
+package ej1;
+
+public class ProfundidadDeArbolBinarioEj5 {
+	private BinaryTree<Integer> arbol;
+	
+	// devuelve la suma de todos los nodos del árbol que se encuentren a la profundidad pasada como argumento.
+	public int sumaElementosProfundidad(int p) {
+		BinaryTree<Integer> ab = null;
+	}
+}

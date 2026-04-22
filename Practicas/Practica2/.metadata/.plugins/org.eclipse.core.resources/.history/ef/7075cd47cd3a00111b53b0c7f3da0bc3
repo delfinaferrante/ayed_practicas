@@ -1,0 +1,12 @@
+package ej1;
+
+public class TransformacionEj6 {
+	BinaryTree<Integer> arbol;
+	
+	public TransformacionEj6(BinaryTree<Integer> arbol) {
+		this.arbol = arbol;
+	}
+	public BinaryTree<Integer> suma(){
+		
+	}
+}

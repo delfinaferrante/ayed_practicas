@@ -1,0 +1,9 @@
+package ej1;
+
+public class ProfundidadDeArbolBinarioEj5 {
+	private BinaryTree<Integer> arbol;
+	
+	public int sumaElementosProfundidad(int t) {
+		
+	}
+}

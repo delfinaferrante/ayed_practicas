@@ -1,0 +1,23 @@
+package ej1;
+
+public class ParcialArbolesEj7 {
+	private BinaryTree<Integer> arbol;
+	
+	
+	public boolean isLeftTree (int num) {
+		if (this.arbol.isEmpty()) {
+			return false;
+		}
+		return buscarYComparar(this.arbol, num);
+	}
+	
+	private boolean buscarYComparar(BinaryTree<Integer> arbol, int num) {
+		if (this.arbol == null) {
+			return false;
+		}
+		
+	}
+	private int contarNodos(BinaryTree<Integer>arbol) {
+		
+	}
+}

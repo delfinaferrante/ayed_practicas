@@ -84,3 +84,22 @@ la raíz, luego los hijos, los hijos de éstos, etc.
 				}
 			}
 		}
+
+Ejemplo de cómo funciona: 
+Usemos este árbol simple: 10 (raíz) con hijos 2 y 3.
+
+-Estado inicial: Cola = [10, null]
+
+-Iteración 1: Sacas el 10. Imprimes 10. Metes a sus hijos 2 y 3.
+	Cola queda: [null, 2, 3]
+
+-Iteración 2: Sacas el null. ¡Fin de nivel! Imprimes un salto de línea y vuelves a meter un null al final.
+	Cola queda: [2, 3, null]
+
+-Iteración 3: Sacas el 2. Imprimes 2. (No tiene hijos).
+	Cola queda: [3, null]
+
+-Iteración 4: Sacas el 3. Imprimes 3. (No tiene hijos).
+	Cola queda: [null]
+
+-Iteración 5: Sacas el null. Como la cola quedó vacía, el else if (!cola.isEmpty()) ya no se cumple y el proceso termina.

@@ -1,5 +1,0 @@
-package ej1;
-
-public class ContadorArbolEj3 {
-	private BinaryTree<Integer> arbol;
-}
