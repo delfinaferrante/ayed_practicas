@@ -1,0 +1,6 @@
+package ej1;
+
+public class Dato {
+	private int suma;
+	private int diferencia;
+}

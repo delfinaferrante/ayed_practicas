@@ -1,0 +1,27 @@
+package ej1;
+
+public class ParcialArbolesEj9 {
+
+	/*  recibe un árbol binario de enteros y devuelve un nuevo árbol que contenga en cada nodo dos tipos
+	 * de información:
+	 * 						- la suma de los números desde la raiz hasta el nodo actual
+	 * 						- la diferencia entre el numero del nodo actual y el num del nodo padre
+	 */
+	public BinaryTree<Dato> sumAndDif(BinaryTree<Integer> arbol){
+		if (arbol == null || arbol.isEmpty()) {
+			return null;
+		} else
+			BinaryTree<Dato> arbolNuevo = new BinaryTree<Dato>(new Dato(0,0));
+
+		recorrerYCopiar(arbol, arbolNuevo);
+		return arbolNuevo;
+	}
+	
+	private BinaryTree<Dato> recorrerYCopiar(BinaryTree<Integer> arbol, BinaryTree<Dato> arbolNuevo) {
+		if (arbol == null) {
+			return null;
+		}
+		
+	}
+
+}

@@ -1,0 +1,10 @@
+package ej1;
+
+public class ParcialArbolesEj9 {
+
+	
+	public BinaryTree<T> sumAndDif(BinaryTree<Integer> arbol){
+		
+	}
+
+}

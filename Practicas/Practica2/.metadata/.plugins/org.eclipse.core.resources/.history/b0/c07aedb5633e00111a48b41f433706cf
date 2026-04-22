@@ -1,0 +1,44 @@
+package ej1;
+
+public class ParcialArbolesEj9 {
+
+	/*  recibe un árbol binario de enteros y devuelve un nuevo árbol que contenga en cada nodo dos tipos
+	 * de información:
+	 * 						- la suma de los números desde la raiz hasta el nodo actual
+	 * 						- la diferencia entre el numero del nodo actual y el num del nodo padre
+	 */
+	public BinaryTree<Dato> sumAndDif(BinaryTree<Integer> arbol){
+		if (arbol == null || arbol.isEmpty()) {
+			return null;
+		} else {
+			BinaryTree<Dato> arbolNuevo = new BinaryTree<Dato>(new Dato(0,0));
+			int suma = 0;
+			int num = 0;
+			return recorrerYCopiar(arbol, arbolNuevo, suma, num);
+		}	
+	}
+	
+	// Recorrido pre orden
+	private BinaryTree<Dato> recorrerYCopiar(BinaryTree<Integer> arbol, BinaryTree<Dato> arbolNuevo, int sumaPadre, int numPadre) {
+		int sumaActual = sumaPadre + arbol.getData();
+	    int difActual = arbol.getData() - numPadre;
+		
+		
+		
+		arbolNuevo.getData().setSuma(arbol.getData() + suma);
+		arbolNuevo.getData().setDiferencia(arbol.getData()-num);
+		if (!arbol.isLeaf()) {			
+			if(arbol.hasLeftChild()) {
+				arbolNuevo.addLeftChild(new BinaryTree<Dato>(new Dato(0,0)));
+				recorrerYCopiar(arbol.getLeftChild(), arbolNuevo.getLeftChild(), suma+arbol.getData(), arbol.getData());
+			}
+			
+			if (arbol.hasRightChild()) {
+				arbolNuevo.addRightChild(new BinaryTree<Dato>(new Dato(0,0)));
+				recorrerYCopiar(arbol.getRightChild(), arbolNuevo.getRightChild(), suma+arbol.getData(), arbol.getData());
+			}
+		}
+		return arbolNuevo;	
+	}
+
+}
