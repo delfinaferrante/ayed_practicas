@@ -30,4 +30,36 @@ public class RecorridosAG {
 		return lista;
 	}
 	
+	//----------------------------------------------------------------
+	public List<Integer> numerosImparesMayoresQueInOrden (GeneralTree <Integer> a, Integer n){
+		List<Integer> resultado = new LinkedList<Integer>();
+		if (a != null && !a.isEmpty()) {
+			recorrerInOrden(a, n, resultado);
+		}
+		return resultado;
+	}
+	
+	private List<Integer> recorrerInOrden(GeneralTree<Integer>arbol, Integer valor, List<Integer> lista){
+		List<GeneralTree<Integer>> hijos = arbol.getChildren();
+
+	    // Proceso PRIMER HIJO (si existe)
+	    if (arbol.hasChildren()) {
+	        recorrerInOrden(hijos.get(0), valor, lista);
+	    }
+
+	    // Proceso la RAÍZ (después del primer hijo)
+	    Integer dato = arbol.getData();
+	    if (dato > valor && dato % 2 != 0) {
+	        lista.add(dato);
+	    }
+
+	    // Proceso el RESTO DE LOS HIJOS (del segundo en adelante)
+	    if (arbol.hasChildren() && hijos.size() > 1) {
+	        for (int i = 1; i < hijos.size(); i++) {
+	            recorrerInOrden(hijos.get(i), valor, lista);
+	        }
+	    }
+	    return lista;
+	}
+	
 }
