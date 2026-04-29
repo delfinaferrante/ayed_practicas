@@ -1,0 +1,59 @@
+------ Recorrido PreOrden (raiz, luego hijos)
+
+	public void preOrden(){
+		System.out.println(getData());
+		List<GeneralTree<T>> hijos = this.getChildren();
+		for (GeneralTree<T> hijo: hijos){
+			hijo.preOrden();
+		}
+	}
+
+	- Retornar lista con los datos del arbol:
+	public List<T> preOrden(){
+		List<T> lis = new LinkedList<T>();
+		recorrer(lis);
+		return lis;
+	}
+	private recorrer(List<T> l){
+		l.add(this.getData());
+		List<GeneralTree<T>> hijos = this.getChildren();
+		for (GeneralTree<T> hijo: hijos){
+			hijo.recorrer(l);
+		}
+	}
+
+
+------ Recorrido Por niveles (uso de cola)
+	
+	public List<T> porNiveles(GeneralTree<T> arbol){
+		List<T> result = new LinkedList<T>();
+		GeneralTree<T> arbolAux;
+		
+		Queue<GeneralTree<T>> cola = new Queue<GeneralTree<T>>();
+		cola.enqueue(arbolAux);
+		
+		while (!cola.isEmpty()){
+			arbolAux = cola.dequeue();
+			result.add(arbolAux.getData());
+			List<GeneralTree<T>> hijos = arbolAux.getChildren();
+			for(GeneralTree<T> hijo: hijos){
+				cola.enqueue(hijo);
+			}
+		}
+		return result;
+	}
+
+------ Recorrido PostOrden (hijos, luego raiz)
+	
+	public void postOrden(GeneralTree<T> arbol){
+		if (arbol != null && !arbol.isEmpty()){
+			if(arbol.hasChildren()){
+				List<GeneralTree<T>> hijos = arbol.getChildren();
+				for(GeneralTree<T> hijo: hijos){
+					postOrden(hijo);
+				}
+			}
+		}
+		
+		System.out.println(arbol.getData());
+	}
