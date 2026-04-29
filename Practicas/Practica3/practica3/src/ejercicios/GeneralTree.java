@@ -128,5 +128,63 @@ public class GeneralTree <T>{
 			}
 			return max;
 		}
+		
+		
+		//------------ ejercicio 5 ---------------
+		// recorro desde la raiz hasta encontrar a, y luego busco b
+		public boolean esAncestro(T a, T b) {
+			// Busco el nodo A
+		    GeneralTree<T> nodoA = buscarNodo(this, a);
+		    
+		    // Si encuentro el nodo A y no es una hoja, busco a 'b' en sus hijos
+		    if (nodoA != null && !nodoA.isLeaf()) {
+		        return buscarB(nodoA, b);
+		    }
+
+		    return false;
+		}
+			
+		private GeneralTree<T> buscarNodo(GeneralTree<T> arbol, T a){
+			if(arbol.getData().equals(a)) {
+				return arbol;
+			}
+			
+			if (arbol.hasChildren()) {
+				for (GeneralTree<T> hijo : arbol.getChildren()) {
+					GeneralTree<T> aux = buscarNodo(hijo, a);
+					if (aux != null) {		// encontre A
+						return aux;
+					}
+				}
+			}
+			return null;	// no encontre A
+		}
+		
+		private boolean buscarB(GeneralTree<T> arbolA, T b) {
+			// Recorro los hijos de A
+			for(GeneralTree<T> hijo: arbolA.getChildren()) {
+				if (hijo.getData().equals(b)) {
+					return true;
+				}
+				
+				if (buscarB(hijo, b)) {
+					return true;
+				}
+			}
+			return false;
+		}
+		
+		public static void main(String[]args) {
+			GeneralTree<Integer> a = new GeneralTree<Integer>(14);
+			GeneralTree<Integer> aI = new GeneralTree<Integer>(13);
+			GeneralTree<Integer> aM = new GeneralTree<Integer>(25);
+			GeneralTree<Integer> aD = new GeneralTree<Integer>(10);
+
+			a.addChild(aI);
+			a.addChild(aM);
+			a.addChild(aD);
+			
+			System.out.println(a.esAncestro(14, 25));
+		}
 	
 }
