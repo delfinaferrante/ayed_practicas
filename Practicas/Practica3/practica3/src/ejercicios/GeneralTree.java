@@ -140,7 +140,6 @@ public class GeneralTree <T>{
 		    if (nodoA != null && !nodoA.isLeaf()) {
 		        return buscarB(nodoA, b);
 		    }
-
 		    return false;
 		}
 			
