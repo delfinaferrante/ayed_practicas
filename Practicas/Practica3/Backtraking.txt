@@ -1,0 +1,31 @@
+///////Backtracking
+es una técnica que se usa cuando el problema no se trata solo de
+encontrar un dato, sino de encontrar una secuencia específica.
+
+Cómo saber que hay que usar backtracking:
+El problema suele pedir
+- "Encontrar un camino que.." (que sume X, que sea el más largo,
+que pase por ciertos nodos)
+- Retornar todas las combinaciones o todas las secuencias que cumplan
+con algun determinante.
+- El camino máximo/mínimo entre la raíz y una hoja
+- Determinar si existe un camino con una restricción específica (por ej:
+que la suma de sus nodos no supere un valor)
+- Cuando se debe retornar los nodos que están dentro de un rango.
+
+Esquema o estructura a recordar:
+	ENTRADA (HACER): agregar el nodo a la lista o sumar el valor a una variable.
+	EXPLORACIÓN: llamar a la recursión para los hijos.
+	SALIDA (DESHACER): quitar el último nodo de la lista o restar el valor. Es
+	el  paso que define al backtracking.
+
+Diferencia con el recorrido por niveles:
+- Niveles: se usa cuando el problema habla de "ancho", "promedio por nivel", o
+"nodo mas cercano".
+- Backtracking: se usa cuando el problema habla de "profundidad", "caminos", o
+"recorridos de raíz a hoja". 
+
+NOTA IMPORTANTE --> cuando el enunciado pide "Retornar el PRIMERO que encuentre",
+hay que usar condición de corte o una comparación estricta (>).
+Si pide "el camino más largo", siempre se va a usar una variable auxiliar (lista)
+para clonar el mejor resultado encontrado hasta ese momento e ir actualizandolo.
