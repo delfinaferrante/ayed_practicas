@@ -1,0 +1,120 @@
+///// RESOLUCIÓN CON DOS LISTAS
+Se utiliza cuando el enunciado te pide un ÚNICO CAMINO que destaque
+sobre el resto (el más largo, el que suma más, el primero que cumpla
+una condición).
+
+	* Lista actual (caminoAct): funciona como un "borrador" que
+	se va modificando (agregando y borrando nodos) constantemente.
+	
+	* Lista resultado: funciona como una "foto" o respaldo. Solo 
+	se actualiza (usando .clear() y .addAll()) cuando la lista
+	actual supera a la guardada en resultado.
+	
+	* Cuándo usarla --> ejercicios de "el camino a la hoja más
+	lejana" o "el camino que sume más". 
+
+	EJEMPLO: retornar el camino donde los nodos sumen lo mínimo,
+	es decir, el camino con valores mínimos. (video 5)
+
+	public static List<Integer> buscarCaminoSumaMin(GeneralTree<Integer> arbol){
+		List<Integer> resultado = new LinkedList<Integer>();
+		if (arbol != null && !arbol.isEmpty())
+			caminoSumaMinimaRec(arbol, resultado, new LinkedList<Integer>(), 0, Integer.MAX_VALUE);
+		return resultado;
+	}
+
+	private static int caminoSumaMinimaRec(GeneralTree<Integer> arbol, List<Integer> resultado, List<Integer> caminoAct, int sumaAct, int sumaMin){
+		sumaAct += arbol.getData();
+		caminoAct.add(arbol.getData());
+
+		if (arbol.isLeaf()){
+			if (sumaAct < sumaMin){
+				sumaMin = sumaAct;
+				resultado.clear();
+				resultado.addAll(caminoAct);
+			}
+		} else
+			for(GeneralTree<Integer> hijo: arbol.getChildren()){
+				sumaMin = caminoSumaMinimaRec(hijo, resultado, caminoAct, sumaAct, sumaMin);
+		}
+
+		caminoAct.remove(caminoAct.size()-1);
+		return sumaMin;
+	}
+
+
+///// RESOLUCIÓN CON LISTA DE LISTAS (List<List<Integer>>())
+Se utiliza cuando el enunciado pide TODOS LOS CAMINOS que cumplan
+con un criterio.
+
+	* Lista actual (caminoAct): sigue siendo el borrador que sube
+	y baja por el árbol.
+	
+	* Contenedor (List<List<Integer>> result): en lugar de pisar
+	una lista vieja con una mejor, acá se acumulan copias de
+	cada camino exitoso que encuentro.
+	
+	* Punto clave --> cada vez que agrego un camino al contenedor,
+	tengo que hacer result.add(new LinkedList<Integer>(actual)).
+	Si agrego la lista actual directamente, al ser un objeto todas
+	las entradas del contenedor terminarán vacías cuando termino
+	el backtracking.
+
+	* Cuando usarla --> cuando dice "Encontrar todos los caminos que sumen
+	exactamente X" o "Listar todos los caminos que terminen en una hoja par".
+
+	EJEMPLO: Listar todos los caminos desde la raíz hasta las hojas en los que
+	todos los valores de los nodos estén entre min y max inclusive (RANGO).
+	
+	public static List<List<Integer>> todosLosCaminosEnRango(GeneralTree<Integer> arbol, int min, int max){
+		List<List<Integer>> resultado = new LinkedList<List<Integer>>();
+		if (arbol != null && !arbol.isEmpty() && arbol.getData >= min && arbol.getData <= max)
+			caminosConValoresEnRango(arbol, resultado, new LinkedList<Integer>(), min, max);
+		return resultado;
+	}
+	
+	private static void caminosConValoresEnRango(GeneralTree<Integer> arbol, List<List<Integer>> resultado, List<Integer> camainoAct, int min, int max){
+		caminoAct.add(arbol.getData());
+		if (arbol.isLeaf()){
+			resultado.add(new LinkedList<Integer>(caminoAct));
+		} else {
+			for (GeneralTree<Integer> hijo: arbol.getChildren()){
+				if (hijo.getData() >= min && hijo.getData() <= max){
+					caminosConValoresEnRango(hijo, resultado, caminoAct, min, max);
+				}
+			}
+		}
+		caminoAct.remove(caminoAct.size()-1);
+	}
+
+
+///// RESOLUCIÓN CON LISTA ÚNICA (búsqueda de existencia)
+Se usa cuando solo necesitas saber SI EXISTE un camino o encontrar EL PRIMERO y terminar todo.
+
+	* El método suele devolver un boolean. Si un hijo devuelve true, el padre agrega
+	su dato a la lista y devuelve true también. 
+
+	* Diferencia: En este caso no se suele limpiar la lista manualmente (backtracking)
+	porque el diseño del retorno ya va construyendo el camino de regreso.
+
+	EJEMPLO: Retornar una lista con los valores pares de las hojas de los árboles,
+	recorridas de izquierda a derecha.
+	
+	public static List<Integer> fronteraPar(GeneralTree<Integer> arbol){
+		List<Integer> resultado = new LinkedList<Integer>();
+		if (arbol != null && !arbol.isEmpty()){
+			fronteraParRec(arbol, resultado);
+		}
+		return resultado;
+	}
+
+	private static void fronteraParRec(GeneralTree<Integer> arbol, List<Integer> resultado){
+		if (arbol.isLeaf()){
+			if(arbol.getData() % 2 == 0){
+				resultado.add(arbol.getData());
+			}
+		} else {
+			for (GeneralTree<Integer> hijo: arbol.getChildren()){
+				fronteraParRec(hijo, resultado);
+			}
+		}
