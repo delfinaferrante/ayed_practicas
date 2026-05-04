@@ -9,38 +9,37 @@ public class ParcialArboles {
 	 * Es de selección si cada nodo tiene en su raíz el valor del menor de sus hijos.
 	 */
 	public static boolean esDeSeleccion (GeneralTree<Integer> arbol) {
-		if(arbol != null && !arbol.isEmpty()) {
-			return recorrer(arbol);
+		if (arbol != null && !arbol.isEmpty()) {
+			return recorrerYVerificar(arbol);
 		}
 		return false;
 	}
 	
-	private static boolean recorrer(GeneralTree<Integer> nodo) {
-		if (nodo.isLeaf()) {
+	private static boolean recorrerYVerificar(GeneralTree<Integer> nodo) {
+		if(nodo.isLeaf()) {			// si es una hoja significa que ya recorri todo el arbol y es de seleccion
 			return true;
 		}
 		
 		int valorMin = Integer.MAX_VALUE;
-		// Recorro y calculo el minimo de los hijos
 		List<GeneralTree<Integer>> hijos = nodo.getChildren();
-		for(GeneralTree<Integer> hijo: hijos) {
-			if (hijo.getData() < valorMin) {
+		for(GeneralTree<Integer> hijo:hijos) {		// cada nodo actual mira y busca el minimo en sus hijos
+			if(hijo.getData() < valorMin) {
 				valorMin = hijo.getData();
 			}
 		}
-		// Verifico la raiz actual (si no es igual)
+		
 		if (!nodo.getData().equals(valorMin)) {
 			return false;
 		}
-		// Verifico los hijos recursivamente y si una rama da false no recorro mas
+		
 		Iterator<GeneralTree<Integer>> it = nodo.getChildren().iterator();
 		boolean cumple = true;
-		
-		while (cumple && it.hasNext()) {
-			cumple = recorrer(it.next());
+		while(cumple && it.hasNext()) {			// si el nodo actual (padre) paso la prueba, entonces hay q verificar lo que tienen sus nodos hijos
+			cumple = esDeSeleccion(it.next());
 		}
 		return cumple;
 	}
+
 	
 	public static void main(String[]args) {
 		// --- Rama Izquierda (debajo del 12 izquierdo) ---

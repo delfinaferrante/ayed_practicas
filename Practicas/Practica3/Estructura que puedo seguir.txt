@@ -1,0 +1,40 @@
+1) Caso base 
+	es lo primero que escribo en un programa. Casi siempre
+	es cuando el nodo es una hoja.
+	
+	Si el árbol tuviera un solo nodo, ¿que deberia volver el método?
+
+2) Trabajo local (tarea del nodo actual)
+	acá se resuelve la parte del problema que le toca
+	exclusivamente al nodo donde estoy parada.
+	
+	- puede ser buscar el valor mínimo entre sus hijos
+	directos, el máximo, o algo similar.
+
+3) Validación/corte de control (pre recursión)
+	antes de gastar memoria en recursión para todos los
+	hijos, se verifica si el nodo actual no cumple la regla.
+	
+	Por ejemplo (ej 9): si !nodo.getData().equals(valorMin)), devuelvo
+	falso y no necesito seguir recorriendo. 
+	
+	Regla --> si se puede fallar rápido, preguntar siempre. Eso hace
+	que el algoritmo sea eficiente y no recorra demás.
+
+4) Delegación (recursión)
+	si el nodo actual pasó la prueba, recién ahí empiezo a
+	validar los hijos. 
+	
+	Acá se decide si usar un for each (si tengo que recorrer todo
+	si o si) o un iterator (si quiero frenar el recorrido ni bien
+	uno falla).
+	
+	Esta parte "propaga" el resultado hacia arriba hasta llegar
+	a la raíz original. 
+
+
+/// como deberia verse mi codigo:
+	- ¿Soy hoja? Retorno resultado base
+	- ¿Que calculo acá? Proceso hijos directos del nodo actual
+	- ¿Cumplo yo? Si no cumplo, retorno falso (corte)
+	- ¿Cumplen mis hijos? Llamada recursiva y return del resultado final.
